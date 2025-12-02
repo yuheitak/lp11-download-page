@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ビジョンを計画書に落とし込むプロンプト ダウンロード｜YAOYA株式会社</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>資料一括ダウンロード｜士業特化型AI活用資料｜YAOYA株式会社</title>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -14,9 +12,6 @@
         :root {
             --color-primary-purple: #360E96;
             --color-accent-green: #00cd33;
-            --color-text-main: #333333;
-            --color-bg-light: #f9faf9;
-            --color-border-light: #e0e6ed;
         }
 
         * {
@@ -26,63 +21,38 @@
         body {
             font-family: 'M PLUS Rounded 1c', sans-serif;
             margin: 0;
-            background-color: var(--color-bg-light);
-            color: var(--color-text-main);
-            line-height: 1.8;
             padding-top: 68px;
+            line-height: 1.8;
+            background: #f9faf9;
+            color: #333;
         }
 
-        .site-header {
+        header.site-header {
             position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
             height: 68px;
             display: flex;
             align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .container {
-            width: 100%;
-            max-width: 1180px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        .site-header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
         .brand img {
             height: 40px;
-            width: auto;
         }
 
         .detail-section {
             padding: 40px 0 80px;
             background: #fff;
             min-height: 80vh;
-        }
-
-        .detail-content {
-            max-width: 560px;
-        }
-
-        .breadcrumb {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        .breadcrumb a {
-            color: #666;
-            text-decoration: none;
         }
 
         .detail-grid {
@@ -106,25 +76,32 @@
         .detail-content h1 {
             font-size: 2rem;
             color: var(--color-primary-purple);
-            margin-bottom: 24px;
             font-weight: 800;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .detail-subtitle {
+            font-size: 1.05rem;
+            color: #555;
+            margin: 0 0 24px;
+            font-weight: 700;
         }
 
         .detail-summary {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: bold;
-            margin-bottom: 40px;
             padding: 24px;
             background: #f9f9f9;
             border-left: 6px solid var(--color-accent-green);
-            border-radius: 4px;
+            margin-bottom: 30px;
         }
 
         .detail-body h2 {
-            font-size: 1.5rem;
-            margin: 40px 0 20px;
+            font-size: 1.4rem;
+            margin: 32px 0 16px;
             padding-bottom: 10px;
-            border-bottom: 2px solid var(--color-border-light);
+            border-bottom: 2px solid #e0e6ed;
             font-weight: 800;
         }
 
@@ -133,84 +110,74 @@
             margin-bottom: 30px;
         }
 
-        .detail-body li {
-            margin-bottom: 10px;
-        }
-
         .form-sidebar {
             background: #ffffff;
             padding: 32px 30px 36px;
             border-radius: 14px;
             border: 1px solid #e0e6ed;
             position: sticky;
-            top: 100px;
+            top: 120px;
             box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
             width: 100%;
             max-width: 460px;
         }
 
-        .form-title {
-            text-align: left;
-            font-size: 1.2rem;
-            font-weight: 800;
-            margin-bottom: 12px;
+        .form-note {
+            margin: 0 0 16px;
+            font-size: 0.9rem;
             color: var(--color-primary-purple);
+            font-weight: 600;
+            line-height: 1.6;
         }
 
-
-        .page-footer {
-            background-color: #f9faf9;
-            padding: 60px 0 20px;
-            text-align: center;
-            border-top: 1px solid var(--color-border-light);
+        @media (max-width: 600px) {
+            .detail-grid {
+                gap: 24px;
+            }
         }
     </style>
 </head>
 
 <body>
     <header class="site-header">
-        <div class="container">
-            <a href="index.html" class="brand"><img src="yaoya-logo.png" alt="YAOYAロゴ"></a>
-        </div>
+        <div class="container"><a href="index.html" class="brand"><img src="yaoya-logo.png" alt="YAOYA"></a></div>
     </header>
     <main>
         <section class="detail-section">
             <div class="container">
-                <div class="breadcrumb">
-                    <a href="index.html">トップ</a> &gt; ビジョンを計画書に落とし込むプロンプト
+                <div class="breadcrumb" style="font-size: 0.9rem; color: #666; margin-bottom: 30px;">
+                    <a href="index.html" style="color: #666; text-decoration: none;">トップ</a> &gt; 資料一括ダウンロード
                 </div>
                 <div class="detail-grid">
                     <div class="detail-content">
-                        <h1>ビジョンを計画書に落とし込む方法</h1>
-
-                        <div style="margin-bottom: 30px;">
-                            <img src="vision_plan_thumbnail.png" alt="ビジョンを計画書に落とし込むプロンプト"
-                                style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                        </div>
-
+                        <h1>士業特化型AI活用資料を一括ダウンロード</h1>
+                        <p class="detail-subtitle">9種類の活用資料（法改正メール、補助金リスト、自動要約など）を、まとめて受け取れる特別セットです。</p>
                         <div class="detail-summary">
-                            「頭の中にあるビジョンを、銀行に提出できる計画書に落とせない」——そんな経営者の悩みを解決。社長の構想を壁打ち形式でヒアリングし、AIが計画書の骨子を代筆します。
+                            顧客対応、補助金提案、税務計算、社内マニュアル作成など、士業の現場で「今すぐ使える」生成AI活用テンプレートをまとめて提供します。
                         </div>
                         <div class="detail-body">
-                            <h2>この資料で解決できること</h2>
+                            <h2>このセットで得られるもの</h2>
                             <ul>
-                                <li>頭の中のビジョンを体系的に整理し、計画書の形にできる</li>
-                                <li>銀行や投資家に提出可能なフォーマットで出力</li>
-                                <li>対話形式で必要な情報を引き出すため、考えが整理される</li>
+                                <li>法改正メール、FAQ自動化、補助金リストなど9種類のプロンプト＆ノウハウ</li>
+                                <li>案件の属人化を防ぎ、引き継ぎ・顧客提案・事務作業を自動化する方法</li>
+                                <li>実際に使われているメール文面やフォーム設計、管理テンプレート</li>
+                            </ul>
+                            <h2>収録資料</h2>
+                            <ul>
+                                <li>法改正案内メール自動生成／SEO対策記事自動作成／補助金自動リストアップ</li>
+                                <li>顧客対応履歴要約／相続税簡易試算／マニュアル質問対応bot</li>
+                                <li>FAQ回答テンプレート／セミナースライド自動生成／ビジョンを計画書に落とす方法</li>
                             </ul>
                         </div>
                     </div>
                     <aside class="form-sidebar">
-                        
-                        
-                                                <div class="hs-form-html" data-region="na2" data-form-id="0a935966-63db-4731-ae8b-38c05b2834ac"
-                            data-portal-id="8419969">                        
-</div>
-                        <p class="form-privacy" style="margin: 16px 0 0 0; font-size: 0.85rem; color: #555; line-height: 1.6;">
-                            ご登録いただいたメールアドレスにダウンロード資料をお送りいたします。当社の<a href="#" class="hs-privacy-policy" style="color: var(--color-primary-purple); font-weight: 700; text-decoration: none;">プライバシーポリシー</a>に同意の上、送信してください。
+                        <p class="form-note">ご登録いただいたメールアドレスに、9種類の資料をまとめてお送りします。</p>
+                        <div class="hs-form-html" data-region="na2" data-form-id="0a935966-63db-4731-ae8b-38c05b2834ac"
+                            data-portal-id="8419969"></div>
+                        <p class="form-privacy" style="margin: 16px 0 0; font-size: 0.85rem; color: #555;">ご登録いただいたメールアドレスにダウンロード資料をお送りいたします。当社の<a href="#"
+                                class="hs-privacy-policy"
+                                style="color: var(--color-primary-purple); font-weight: 700; text-decoration: none;">プライバシーポリシー</a>に同意の上、送信してください。
                         </p>
-
-                        
                     </aside>
                 </div>
             </div>
@@ -253,50 +220,7 @@
         </div>
     </div>
     <script src="https://js-na2.hsforms.net/forms/embed/developer/8419969.js" defer></script>
-            <script>
-        (function () {
-            var modal = document.getElementById('privacyModal');
-            var closeBtn = document.getElementById('closePrivacyModal');
-            if (!modal || !closeBtn) return;
-
-            function openModal() {
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeModal() {
-                modal.style.display = 'none';
-                document.body.style.overflow = '';
-            }
-
-            function isPrivacyLink(anchor) {
-                if (!anchor) return false;
-                if (anchor.id === 'privacyPolicyLink') return true;
-                if (anchor.classList && anchor.classList.contains('hs-privacy-policy')) return true;
-                var consent = anchor.closest && anchor.closest('.legal-consent-container');
-                if (consent && anchor.textContent && anchor.textContent.indexOf('プライバシーポリシー') !== -1) return true;
-                return false;
-            }
-
-            document.addEventListener('click', function (e) {
-                var anchor = e.target.closest('a');
-                if (!isPrivacyLink(anchor)) return;
-                e.preventDefault();
-                openModal();
-            });
-
-            closeBtn.addEventListener('click', closeModal);
-            modal.addEventListener('click', function (e) {
-                if (e.target === modal) {
-                    closeModal();
-                }
-            });
-        })();
-    </script>
-
-
-
-
+    <script>(function () { var m = document.getElementById('privacyModal'), o = document.getElementById('privacyPolicyLink'), c = document.getElementById('closePrivacyModal'); if (!m || !o || !c) return; o.addEventListener('click', function (e) { e.preventDefault(); m.style.display = 'block'; document.body.style.overflow = 'hidden' }); c.addEventListener('click', function () { m.style.display = 'none'; document.body.style.overflow = '' }); m.addEventListener('click', function (e) { if (e.target === m) { m.style.display = 'none'; document.body.style.overflow = '' } }) })();</script>
 </body>
 
 </html>

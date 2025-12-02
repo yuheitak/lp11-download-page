@@ -116,7 +116,6 @@
         .site-header .container {
             display: flex;
             align-items: center;
-            justify-content: space-between;
             height: 68px;
             position: relative;
         }
@@ -141,6 +140,16 @@
             left: 50%;
             transform: translateX(-50%);
             white-space: nowrap;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         .menu-toggle {
@@ -209,9 +218,44 @@
             white-space: nowrap;
         }
 
+        .site-nav a.cta {
+            border: 1px solid var(--color-primary-purple);
+            border-radius: 999px;
+            padding: 8px 16px;
+            margin-left: 6px;
+        }
+
+        .site-nav a.cta-primary {
+            background: var(--color-primary-purple);
+            color: #ffffff;
+            box-shadow: 0 8px 18px rgba(54, 14, 150, 0.18);
+        }
+
         .site-nav a:hover {
             background: var(--color-bg-light);
             color: var(--color-primary-purple);
+        }
+
+        .nav-actions .cta {
+            border: 1px solid var(--color-primary-purple);
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--color-primary-purple);
+            background: #fff;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .nav-actions .cta-primary {
+            background: var(--color-primary-purple);
+            color: #fff;
+            box-shadow: 0 8px 18px rgba(54, 14, 150, 0.18);
+        }
+
+        .nav-actions .cta:hover {
+            transform: translateY(-2px);
         }
 
         .container {
@@ -729,8 +773,8 @@
 
         @media (max-width: 600px) {
             .resource-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
+                grid-template-columns: 1fr;
+                gap: 18px;
             }
         }
 
@@ -935,6 +979,23 @@
         .case-study-content {
             display: grid;
             gap: 14px;
+        }
+
+        @media (max-width: 640px) {
+            .case-studies {
+                display: flex;
+                overflow-x: auto;
+                gap: 16px;
+                padding-bottom: 10px;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .case-study-card {
+                flex: 0 0 80%;
+                min-width: 260px;
+                scroll-snap-align: start;
+            }
         }
 
         .case-cta {
@@ -1526,6 +1587,23 @@
                 padding: 10px 8px;
             }
 
+            .nav-actions {
+                position: static;
+                transform: none;
+                gap: 8px;
+                margin-left: auto;
+            }
+
+            .nav-actions .download-cta {
+                padding: 8px 12px;
+                font-size: 0.88rem;
+                box-shadow: 0 8px 16px rgba(54, 14, 150, 0.18);
+            }
+
+            .nav-actions .contact-cta {
+                display: none;
+            }
+
             .container {
                 padding: 0 18px;
             }
@@ -1951,10 +2029,30 @@
             line-height: 1.4;
         }
 
+        .library-title-break {
+            white-space: nowrap;
+        }
+
+        .library-title-break::before {
+            content: '｜';
+            margin: 0 4px;
+        }
+
         @media (max-width: 600px) {
             .library-header-title {
                 font-size: 1.5rem;
                 line-height: 1.3;
+            }
+
+            .library-title-break {
+                display: block;
+                margin-top: 4px;
+                white-space: normal;
+            }
+
+            .library-title-break::before {
+                content: none;
+                margin: 0;
             }
 
             .library-header-description {
@@ -2015,15 +2113,15 @@
 
         @media (max-width: 600px) {
             .resource-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
+                grid-template-columns: 1fr;
+                gap: 18px;
             }
         }
 
         .resource-card {
             background: #ffffff;
             border: 1px solid var(--color-border-light);
-            border-radius: 16px;
+            border-radius: 0;
             overflow: hidden;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             display: flex;
@@ -2042,13 +2140,55 @@
             /* Highlight border on hover */
         }
 
+        .resource-subtitle {
+            margin: 6px 0 0;
+            font-size: 0.9rem;
+            color: #555;
+            font-weight: 600;
+        }
+
+        .resource-download-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 12px;
+        }
+
+        .resource-download-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border: 1.5px solid var(--color-primary-purple);
+            border-radius: 999px;
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: var(--color-primary-purple);
+            letter-spacing: 0.03em;
+            background: rgba(54, 14, 150, 0.05);
+            white-space: nowrap;
+        }
+
+        .resource-download-label::after {
+            content: '↓';
+            font-size: 0.95rem;
+            color: var(--color-accent-green);
+        }
+
+        @media (max-width: 500px) {
+            .resource-download-label {
+                font-size: 0.82rem;
+                padding: 6px 12px;
+            }
+        }
+
         .resource-thumb {
             position: relative;
             width: 100%;
             padding-bottom: 56.25%;
             /* 16:9 aspect ratio */
             background: #f5f5f5;
-            border-radius: 12px 12px 0 0;
+            border-radius: 0;
             overflow: hidden;
         }
 
@@ -2156,15 +2296,19 @@
     <header class="site-header">
         <div class="container">
             <a href="#top" class="brand" aria-label="トップへ戻る"><img src="yaoya-logo.png" alt="YAOYAロゴ"></a>
-            <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="globalNav"
-                aria-label="メニューを開閉">
-                <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
-            </button>
             <nav class="site-nav" id="globalNav">
                 <a href="#library">資料一覧</a>
                 <a href="#cases">導入実績</a>
                 <a href="#company">運営会社</a>
             </nav>
+            <div class="nav-actions">
+                <a href="download_all.html" class="cta cta-primary download-cta">資料ダウンロード</a>
+                <a href="https://yaoya.io/contact/" target="_blank" rel="noopener" class="cta contact-cta">お問い合わせ</a>
+                <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="globalNav"
+                    aria-label="メニューを開閉">
+                    <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -2174,11 +2318,11 @@
         <section class="library-section" id="library">
             <div class="container">
                 <div class="library-header">
-                    <h1 class="library-header-title">士業特化型・すぐに実務で使える生成AI活用術</h1>
+                    <h1 class="library-header-title">ダウンロードですぐ試せる<span class="library-title-break">士業特化型お役立ち資料集</span></h1>
                     <p class="library-header-description">社労士、税理士、行政書士など、士業の現場ですぐに使える業務別AI活用術と成功事例を厳選しました。</p>
                     <p class="library-header-cta"
                         style="margin-top: 12px; font-size: 0.95rem; font-weight: 600; color: var(--color-accent-green); text-align: center;">
-                        各ページからすぐに試せる活用方法をご確認ください。</p>
+                        すぐに試せる活用方法をご確認ください。</p>
                 </div>
 
                 <!-- Tabs Removed -->
@@ -2187,99 +2331,135 @@
                     <!-- Item 1: Marketing - Law Update Emails -->
                     <a href="download_law_update.html" class="resource-card">
                         <div class="resource-thumb">
-                            <img src="law_update_thumbnail.jpg" alt="法改正案内メール自動生成プロンプト"
+                            <img src="law_update_thumbnail.png" alt="法改正案内メール自動生成プロンプト"
                                 style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="resource-content">
                             <h2 class="resource-title">法改正案内メール自動生成プロンプト</h2>
+                            <p class="resource-subtitle">「法改正の案内メール、一斉送信したいが文面を考えるのが億劫」を解決</p>
+                            <div class="resource-download-wrapper">
+                                <span class="resource-download-label">ダウンロード</span>
+                            </div>
                         </div>
                     </a>
 
                     <!-- Item 2: Marketing - SEO Articles -->
                     <a href="download_seo_articles.html" class="resource-card">
                         <div class="resource-thumb">
-                            <img src="seo_articles_thumbnail.jpg" alt="SEO対策ブログ記事作成プロンプト"
+                            <img src="seo_articles_thumbnail.png" alt="SEO対策ブログ記事作成プロンプト"
                                 style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="resource-content">
                             <h2 class="resource-title">SEO対策ブログ記事作成プロンプト</h2>
+                            <p class="resource-subtitle">「SEO対策したいけど、「相続税」の記事なんて書く時間がない...」を解決</p>
+                            <div class="resource-download-wrapper">
+                                <span class="resource-download-label">ダウンロード</span>
+                            </div>
                         </div>
                     </a>
 
                     <!-- Item 3: Management - Subsidy Search -->
                     <a href="download_subsidy_search.html" class="resource-card">
                         <div class="resource-thumb">
-                            <img src="subsidy_search_thumbnail.jpg" alt="補助金自動リストアッププロンプト"
+                            <img src="subsidy_search_thumbnail.png" alt="補助金自動リストアッププロンプト"
                                 style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="resource-content">
                             <h2 class="resource-title">使える補助金を自動でリストアップする方法</h2>
+                            <p class="resource-subtitle">「顧問先に『使える補助金ない？』と聞かれるたびに調べるのが大変」を解決</p>
+                            <div class="resource-download-wrapper">
+                                <span class="resource-download-label">ダウンロード</span>
+                            </div>
                         </div>
                     </a>
 
                     <!-- Item 4: Customer Support - Client History -->
                     <a href="download_client_history.html" class="resource-card">
                         <div class="resource-thumb">
-                            <img src="client_history_thumbnail.jpg" alt="顧客対応履歴要約プロンプト"
+                            <img src="client_communication.png" alt="顧客対応履歴要約プロンプト"
                                 style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="resource-content">
                             <h2 class="resource-title">顧客対応履歴要約プロンプト</h2>
+                            <p class="resource-subtitle">「担当者が辞めると、その顧客の『癖』や『経緯』が全て消えてしまう」を解決</p>
+                            <div class="resource-download-wrapper">
+                                <span class="resource-download-label">ダウンロード</span>
+                            </div>
                         </div>
                     </a>
 
                     <!-- Item 5: Product - Tax Calculator -->
                     <a href="download_tax_calculator.html" class="resource-card">
                         <div class="resource-thumb">
-                            <img src="tax_calculator_thumbnail.jpg" alt="相続税簡易試算プロンプト"
+                            <img src="tax_calculator_thumbnail.png" alt="相続税簡易試算プロンプト"
                                 style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="resource-content">
                             <h2 class="resource-title">相続税簡易試算プロンプト</h2>
+                            <p class="resource-subtitle">「簡易的な相続税試算、専用ソフトを開くほどでもない時にサッと計算したい」を解決</p>
+                            <div class="resource-download-wrapper">
+                                <span class="resource-download-label">ダウンロード</span>
+                            </div>
                         </div>
                     </a>
 
                     <!-- Item 6: HR - Manual Q&A Bot -->
                     <a href="download_manual_qa.html" class="resource-card">
                         <div class="resource-thumb">
-                            <img src="manual_qa_thumbnail.jpg" alt="マニュアル質問対応botプロンプト"
+                            <img src="manual_qa_thumbnail.png" alt="マニュアル質問対応botプロンプト"
                                 style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="resource-content">
                             <h2 class="resource-title">マニュアル質問対応botの作成方法</h2>
+                            <p class="resource-subtitle">「『それ、マニュアルの3ページ目に書いてあるよね?』と新人に言うのが疲れた」を解決</p>
+                            <div class="resource-download-wrapper">
+                                <span class="resource-download-label">ダウンロード</span>
+                            </div>
                         </div>
                     </a>
 
                     <!-- Item 7: Customer Support - FAQ Response -->
                     <a href="download_faq_response.html" class="resource-card">
                         <div class="resource-thumb">
-                            <img src="faq_response_thumbnail.jpg" alt="よくある質問回答テンプレート生成プロンプト"
+                            <img src="faq_response_thumbnail.png" alt="よくある質問回答テンプレート生成プロンプト"
                                 style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="resource-content">
                             <h2 class="resource-title">よくある質問回答テンプレート生成プロンプト</h2>
+                            <p class="resource-subtitle">「年末調整の時期、同じ質問（書き方）の電話が鳴り止まない...」を解決</p>
+                            <div class="resource-download-wrapper">
+                                <span class="resource-download-label">ダウンロード</span>
+                            </div>
                         </div>
                     </a>
 
                     <!-- Item 8: Product - Seminar Slides -->
                     <a href="download_seminar_slides.html" class="resource-card">
                         <div class="resource-thumb">
-                            <img src="seminar_slides_thumbnail.jpg" alt="セミナースライド自動生成プロンプト"
+                            <img src="seminar_slides_thumbnail.png" alt="セミナースライド自動生成プロンプト"
                                 style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="resource-content">
                             <h2 class="resource-title">セミナースライドを自動で作成する方法</h2>
+                            <p class="resource-subtitle">「セミナー登壇はいいが、スライドのデザイン調整で徹夜するのはもう嫌だ」を解決</p>
+                            <div class="resource-download-wrapper">
+                                <span class="resource-download-label">ダウンロード</span>
+                            </div>
                         </div>
                     </a>
 
                     <!-- Item 9: Management - Vision to Plan -->
                     <a href="download_vision_plan.html" class="resource-card">
                         <div class="resource-thumb">
-                            <img src="vision_plan_thumbnail.jpg" alt="ビジョンを計画書に落とし込むプロンプト"
+                            <img src="vision_plan_thumbnail.png" alt="ビジョンを計画書に落とし込むプロンプト"
                                 style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="resource-content">
                             <h2 class="resource-title">ビジョンを計画書に落とし込む方法</h2>
+                            <p class="resource-subtitle">「頭の中にあるビジョンを、銀行に提出できる計画書に落とせない」を解決</p>
+                            <div class="resource-download-wrapper">
+                                <span class="resource-download-label">ダウンロード</span>
+                            </div>
                         </div>
                     </a>
                 </div>
@@ -2596,29 +2776,40 @@
         // Privacy Policy Modal
         (function () {
             var modal = document.getElementById('privacyModal');
-            var openLink = document.getElementById('privacyPolicyLink');
             var closeBtn = document.getElementById('closePrivacyModal');
 
-            if (!modal || !openLink || !closeBtn) return;
+            if (!modal || !closeBtn) return;
 
-            // Open modal
-            openLink.addEventListener('click', function (e) {
-                e.preventDefault();
+            function openModal() {
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
-            });
+            }
 
-            // Close modal
-            closeBtn.addEventListener('click', function () {
+            function closeModal() {
                 modal.style.display = 'none';
                 document.body.style.overflow = '';
+            }
+
+            function isPrivacyLink(anchor) {
+                if (!anchor) return false;
+                if (anchor.id === 'privacyPolicyLink') return true;
+                if (anchor.classList && anchor.classList.contains('hs-privacy-policy')) return true;
+                var consent = anchor.closest && anchor.closest('.legal-consent-container');
+                if (consent && anchor.textContent && anchor.textContent.indexOf('プライバシーポリシー') !== -1) return true;
+                return false;
+            }
+
+            document.addEventListener('click', function (e) {
+                var anchor = e.target.closest('a');
+                if (!isPrivacyLink(anchor)) return;
+                e.preventDefault();
+                openModal();
             });
 
-            // Close modal when clicking outside
+            closeBtn.addEventListener('click', closeModal);
             modal.addEventListener('click', function (e) {
                 if (e.target === modal) {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = '';
+                    closeModal();
                 }
             });
         })();

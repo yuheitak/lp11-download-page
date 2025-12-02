@@ -3,14 +3,92 @@
 
 <head>
     <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-MBXLXVMT');</script>
+        <script>
+        (function () {
+            var modal = document.getElementById('privacyModal');
+            var closeBtn = document.getElementById('closePrivacyModal');
+            if (!modal || !closeBtn) return;
+
+            function openModal() {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+
+            function isPrivacyLink(anchor) {
+                if (!anchor) return false;
+                if (anchor.id === 'privacyPolicyLink') return true;
+                if (anchor.classList && anchor.classList.contains('hs-privacy-policy')) return true;
+                var consent = anchor.closest && anchor.closest('.legal-consent-container');
+                if (consent && anchor.textContent && anchor.textContent.indexOf('プライバシーポリシー') !== -1) return true;
+                return false;
+            }
+
+            function injectPrivacyIntoForms() {
+                var forms = document.querySelectorAll('.hs-form');
+                forms.forEach(function (form) {
+                    if (form.dataset.privacyInjected === '1') return;
+                    var submit = form.querySelector('.hs_submit, .actions');
+                    if (!submit || !submit.parentNode) return;
+
+                    var fields = Array.prototype.slice.call(form.querySelectorAll('.hs-form-field'));
+                    var target = null;
+                    fields.forEach(function (field) {
+                        var labelText = (field.textContent || '').replace(/\s+/g, '');
+                        if (labelText.indexOf('役職') !== -1 || labelText.indexOf('従業員数') !== -1) {
+                            target = field;
+                        }
+                    });
+
+                    var note = document.createElement('p');
+                    note.className = 'form-privacy-inline';
+                    note.style.margin = '12px 0 16px';
+                    note.style.fontSize = '0.85rem';
+                    note.style.color = '#555';
+                    note.style.lineHeight = '1.6';
+                    note.innerHTML = '当社の<a href="#" class="hs-privacy-policy" style="color: var(--color-primary-purple); font-weight: 700; text-decoration: none;">プライバシーポリシー</a>に同意の上、送信してください。';
+
+                    var parent = submit.parentNode;
+                    if (target && target.parentNode === parent) {
+                        parent.insertBefore(note, submit);
+                    } else if (target && target.parentNode) {
+                        target.parentNode.insertBefore(note, submit);
+                    } else {
+                        parent.insertBefore(note, submit);
+                    }
+
+                    form.dataset.privacyInjected = '1';
+                });
+            }
+
+            document.addEventListener('click', function (e) {
+                var anchor = e.target.closest('a');
+                if (!isPrivacyLink(anchor)) return;
+                e.preventDefault();
+                openModal();
+            });
+
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            injectPrivacyIntoForms();
+            var observer = new MutationObserver(function () {
+                injectPrivacyIntoForms();
+            });
+            observer.observe(document.body, { childList: true, subtree: true });
+        })();
+    </script>
+
+
+
     <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,7 +141,7 @@
 
         .container {
             width: 100%;
-            max-width: 1000px;
+            max-width: 1180px;
             margin: 0 auto;
             padding: 0 20px;
             position: relative;
@@ -88,6 +166,10 @@
             min-height: 80vh;
         }
 
+        .detail-content {
+            max-width: 560px;
+        }
+
         .breadcrumb {
             font-size: 0.9rem;
             color: #666;
@@ -105,14 +187,19 @@
 
         .detail-grid {
             display: grid;
-            grid-template-columns: 1fr 360px;
-            gap: 50px;
+            grid-template-columns: minmax(0, 560px) 460px;
+            gap: 36px;
             align-items: start;
         }
 
         @media (max-width: 900px) {
             .detail-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .form-sidebar {
+                max-width: 100%;
+                position: static;
             }
         }
 
@@ -176,20 +263,25 @@
         }
 
         .form-sidebar {
-            background: #f0f2f5;
-            padding: 30px;
-            border-radius: 16px;
+            background: #ffffff;
+            padding: 32px 30px 36px;
+            border-radius: 14px;
+            border: 1px solid #e0e6ed;
             position: sticky;
             top: 100px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 460px;
         }
 
         .form-title {
-            text-align: center;
+            text-align: left;
             font-size: 1.2rem;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             color: var(--color-primary-purple);
         }
+
 
         /* Footer (Copied) */
         .page-footer {
@@ -224,13 +316,47 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17614757436">
     </script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+        <script>
+        (function () {
+            var modal = document.getElementById('privacyModal');
+            var closeBtn = document.getElementById('closePrivacyModal');
+            if (!modal || !closeBtn) return;
 
-        gtag('config', 'AW-17614757436');
+            function openModal() {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+
+            function isPrivacyLink(anchor) {
+                if (!anchor) return false;
+                if (anchor.id === 'privacyPolicyLink') return true;
+                if (anchor.classList && anchor.classList.contains('hs-privacy-policy')) return true;
+                var consent = anchor.closest && anchor.closest('.legal-consent-container');
+                if (consent && anchor.textContent && anchor.textContent.indexOf('プライバシーポリシー') !== -1) return true;
+                return false;
+            }
+
+            document.addEventListener('click', function (e) {
+                var anchor = e.target.closest('a');
+                if (!isPrivacyLink(anchor)) return;
+                e.preventDefault();
+                openModal();
+            });
+
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        })();
     </script>
+
 </head>
 
 <body>
@@ -288,9 +414,15 @@
                     </div>
 
                     <aside class="form-sidebar">
-                        <div class="form-title">今すぐダウンロード（無料）</div>
-                        <div class="hs-form-html" data-region="na2" data-form-id="0a935966-63db-4731-ae8b-38c05b2834ac"
-                            data-portal-id="8419969"></div>
+                        
+                                                <div class="hs-form-html" data-region="na2" data-form-id="0a935966-63db-4731-ae8b-38c05b2834ac"
+                            data-portal-id="8419969">                        
+</div>
+                        <p class="form-privacy" style="margin: 16px 0 0 0; font-size: 0.85rem; color: #555; line-height: 1.6;">
+                            当社の<a href="#" class="hs-privacy-policy" style="color: var(--color-primary-purple); font-weight: 700; text-decoration: none;">プライバシーポリシー</a>に同意の上、送信してください。
+                        </p>
+
+                        
                     </aside>
                 </div>
             </div>

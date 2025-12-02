@@ -39,7 +39,7 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1180px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -48,20 +48,29 @@
             height: 40px;
         }
 
-        .detail-section {
+.detail-section {
             padding: 40px 0 80px;
             background: #fff;
         }
 
+        .detail-content {
+            max-width: 560px;
+        }
+
         .detail-grid {
             display: grid;
-            grid-template-columns: 1fr 360px;
-            gap: 50px;
+            grid-template-columns: minmax(0, 560px) 460px;
+            gap: 36px;
         }
 
         @media (max-width: 900px) {
             .detail-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .form-sidebar {
+                max-width: 100%;
+                position: static;
             }
         }
 
@@ -90,20 +99,25 @@
         }
 
         .form-sidebar {
-            background: #f0f2f5;
-            padding: 30px;
-            border-radius: 16px;
+            background: #ffffff;
+            padding: 32px 30px 36px;
+            border-radius: 14px;
+            border: 1px solid #e0e6ed;
             position: sticky;
             top: 100px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 460px;
         }
 
         .form-title {
-            text-align: center;
+            text-align: left;
             font-size: 1.2rem;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             color: var(--color-primary-purple);
         }
+
     </style>
 </head>
 
@@ -122,7 +136,7 @@
                         <h1>使える補助金を自動でリストアップする方法</h1>
 
                         <div style="margin-bottom: 30px;">
-                            <img src="subsidy_search_thumbnail.jpg" alt="補助金自動リストアッププロンプト"
+                            <img src="subsidy_search_thumbnail.png" alt="補助金自動リストアッププロンプト"
                                 style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
                         </div>
 
@@ -140,14 +154,16 @@
                         </div>
                     </div>
                     <aside class="form-sidebar">
-                        <p class="form-note"
-                            style="margin: 0 0 20px 0; padding: 14px 18px; background: rgba(54, 14, 150, 0.08); border-radius: 10px; font-size: 0.9rem; line-height: 1.6; color: var(--color-primary-purple); font-weight: 600; text-align: center;">
-                            <i class="fas fa-envelope"
-                                style="margin-right: 6px; color: var(--color-accent-green);"></i>ご登録いただいたメールアドレスにダウンロード資料をお送りいたします。
+                        
+                        
+                                                <div class="hs-form-html" data-region="na2" data-form-id="0a935966-63db-4731-ae8b-38c05b2834ac"
+                            data-portal-id="8419969">                        
+</div>
+                        <p class="form-privacy" style="margin: 16px 0 0 0; font-size: 0.85rem; color: #555; line-height: 1.6;">
+                            ご登録いただいたメールアドレスにダウンロード資料をお送りいたします。当社の<a href="#" class="hs-privacy-policy" style="color: var(--color-primary-purple); font-weight: 700; text-decoration: none;">プライバシーポリシー</a>に同意の上、送信してください。
                         </p>
-                        <div class="form-title">今すぐダウンロード（無料）</div>
-                        <div class="hs-form-html" data-region="na2" data-form-id="0a935966-63db-4731-ae8b-38c05b2834ac"
-                            data-portal-id="8419969"></div>
+
+                        
                     </aside>
                 </div>
             </div>
@@ -219,7 +235,50 @@
         </div>
     </div>
     <script src="https://js-na2.hsforms.net/forms/embed/developer/8419969.js" defer></script>
-    <script>(function () { var m = document.getElementById('privacyModal'), o = document.getElementById('privacyPolicyLink'), c = document.getElementById('closePrivacyModal'); if (!m || !o || !c) return; o.addEventListener('click', function (e) { e.preventDefault(); m.style.display = 'block'; document.body.style.overflow = 'hidden' }); c.addEventListener('click', function () { m.style.display = 'none'; document.body.style.overflow = '' }); m.addEventListener('click', function (e) { if (e.target === m) { m.style.display = 'none'; document.body.style.overflow = '' } }) })();</script>
+            <script>
+        (function () {
+            var modal = document.getElementById('privacyModal');
+            var closeBtn = document.getElementById('closePrivacyModal');
+            if (!modal || !closeBtn) return;
+
+            function openModal() {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+
+            function isPrivacyLink(anchor) {
+                if (!anchor) return false;
+                if (anchor.id === 'privacyPolicyLink') return true;
+                if (anchor.classList && anchor.classList.contains('hs-privacy-policy')) return true;
+                var consent = anchor.closest && anchor.closest('.legal-consent-container');
+                if (consent && anchor.textContent && anchor.textContent.indexOf('プライバシーポリシー') !== -1) return true;
+                return false;
+            }
+
+            document.addEventListener('click', function (e) {
+                var anchor = e.target.closest('a');
+                if (!isPrivacyLink(anchor)) return;
+                e.preventDefault();
+                openModal();
+            });
+
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        })();
+    </script>
+
+
+
+
 </body>
 
 </html>
